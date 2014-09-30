@@ -1,0 +1,356 @@
+/*-------------------------------------------- header ------------------------------------------*/
+#header {
+	@extend %pageWidth;
+
+	position: relative;
+	z-index: 2;
+	padding-top: 27px;
+	padding-bottom: 43px;
+}
+#containerHeader {
+	
+}
+
+.logo{
+	float: left;
+}
+.hPhone{
+	text-align: right;
+	float: right;
+	margin-top: 35px;
+	line-height: 1;
+	.number{
+		@include pfdm();
+		font-size: 30px;
+		text-decoration: none;
+
+	}
+	.telZakaz{
+		text-decoration: underline;
+		cursor: pointer;
+		font-size: 12px;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		&:hover{
+			text-decoration: none;
+		}
+	}
+}
+
+.searchForm{
+	padding-top: 37px;
+	display: block; 
+	width: auto;
+	margin-left: 484px;
+	margin-right: 242px;
+	form{
+		position: relative;
+	}
+	input[type=submit]{
+		position: absolute;
+		width: 16px;
+		height: 17px;
+		top: 13px;
+		left: 13px;
+		@include sprite();
+	}
+	input[type="text"]{
+		height: 44px;
+		@include pfdm();
+		background:#dbdbdb;
+		text-transform: uppercase;
+		padding: 0 15px 0 43px;
+		width: 100%;
+		@include box-sizing(border-box);
+		font-size: 18px;
+
+	}
+}
+.mainMenu{
+	width: 100%;
+	z-index: 0;
+	ul{
+		padding: 0;
+		width: 100%;
+		height: 60px;
+		overflow: hidden;
+	}
+	li{
+		display: inline-block;
+		float: left;
+	}
+	a, &>span{ 
+		display: block;
+		padding: 0 14px;
+		height: 60px;
+		position: relative;
+		line-height: 60px;
+		color:#fff;
+		@include pfdm;
+		text-transform: uppercase;
+		text-decoration: none;
+		font-size: 22px;
+		font-weight: normal;
+	}
+}
+#menu {
+	@extend %pageWidth;
+	
+	&:after{
+		display: block;
+		content:"";
+		clear: both;
+	}
+	ul{		
+		background:$bBlue;		
+	}
+	li{
+		position: relative;	
+		&.active{
+			span{
+				text-decoration: underline;
+			}
+		}
+		&.sitemap, &.toWrite, &.search{
+			a, span{
+				padding: 0;
+				width: 60px;
+				height: 60px;
+
+				&:after{
+					display: block;
+					@include alignCenter();
+					@include sprite();
+					content:"";
+					display: block;
+					@include opacity(0.3);
+
+				}
+				&:hover{
+					&:after{
+						@include opacity(1);
+					}
+				}
+			}
+		}
+		&.sitemap{
+			a{
+				&:after{
+					width: 27px;
+					height: 18px;
+					background-position: -18px 0;
+				}
+			}
+		}
+		&.toWrite{
+			a{
+				&:after{
+					width: 24px;
+					height: 17px;
+					background-position: -47px 0;
+				}
+			}
+		}
+		&.search{
+			display: none;
+			span:after{
+				width: 16px;	
+				height: 17px;	
+				background-position: -37px -21px;
+			}
+		}
+		a, span{
+			&:hover{
+				background:$nBlue;
+			}
+		}
+
+	}
+	.hPhone{
+		display: none; 
+	}
+}
+li.search span{
+	display: block;
+	width: 100%;	
+	height: 45px;
+	&:hover{
+		background:$nBlue;
+	}
+}
+#menuButton{
+	position: absolute;
+	top: 30px;
+	right: 20px;
+	cursor: pointer;
+	display: none;
+	z-index: 1000;
+	width: 30px;
+	height: 32px;
+	overflow: hidden;
+}
+.menuLine{
+	position: relative;
+	width: 30px;
+	height: 4px;
+	margin: 5px auto;
+	background: $bBlue;
+	z-index: 10;
+	right: 0;
+	@include transition(all, 0.3s);
+	@include opacity(1);
+	.openMenu &{
+		@include alignCenter();
+		@include transition(all, 0.3s);
+	 	&:nth-child(2){
+			right: -100px;
+	 	}
+	 	&:nth-child(1){
+			@include rotate(45deg);
+	 	}
+	 	&:nth-child(3){
+			@include rotate(-45deg);
+	 	}
+
+	}
+}
+#breads{
+	margin:{
+		top: 20px;
+		bottom: 50px;
+	}
+
+}
+
+/*-------------------------------------------- footer ------------------------------------------*/
+#footer {@extend %pageWidth;
+
+	position: absolute;
+	z-index: 2;
+	bottom: 0;
+	left: 0;
+	padding: 0 10px;
+	height: $fHeight + 35px;
+	padding-bottom: 35px;
+
+	.mainMenu{
+		position: absolute;
+		bottom: 0;
+		background:rgba(#000, 0.2);
+		ul{
+			width: auto;
+			display: table;
+			margin: 0 auto;
+		}
+	}
+	.nav{
+		a{
+			&:hover{
+				background: rgba(#000, 0.3);
+			}
+		}
+	}
+}
+#containerFooter {
+	height: 100%;
+	background:$fGray url('../i/footer.jpg') center center no-repeat;
+}
+.mainFooter{
+	text-align: center;
+	padding: 40px 0 50px;
+
+	color:#fff;
+}
+
+.fLogo{
+	display: block;
+	margin-bottom: 35px;
+	font-size: 16px;
+	font-weight: 300;
+}
+
+//---------------------------------------------------------Side B
+
+aside{
+	@include zen-grid-item(1, 1);
+	margin-bottom: 40px;
+	@include zenMinuses();
+}
+aside+.staticContent{
+	@include zen-grid-item(4, 2);
+	margin-left: auto;
+}
+.secondryMenu{
+	padding-left: 5px;
+	font-size: 12px;
+	font-weight: 600;
+	padding-right: 20px;
+	word-wrap: normal;
+	&>li{
+		&.active{
+			ul{
+				display: block;
+			}
+			&>a, &>span{
+				background:#004588;
+				color:#fff;
+			}
+		}
+		li.active{
+			&>a, &>span{
+				background:#c0d4e7;
+			}
+		}
+		position: relative;
+		&>a, &>span{
+			text-transform: uppercase;
+			position: relative;
+			&:before {
+				content: "";
+				display: block;
+				position: absolute;
+				top: -2px;
+				bottom: 0;
+				left: 0px;
+				width: 6px;
+				height: 6px;
+				border-bottom: 1px solid #083d71;
+				border-left: 1px solid #083d71;
+				@include rotate(225deg);
+				margin: auto;
+			}
+			&:hover{
+				background:#004588;
+				color:#fff;
+				&:before{
+					border-color: #00376c;
+				}
+			}
+		}
+		
+	}
+	ul{
+		border-top: 1px solid #abb5be;
+		display: none;
+		padding: 0;
+		li{
+			background:#d6e2ee;
+			&:hover{
+				background:#c0d4e7;
+			}
+			&:last-child{
+				border-bottom: 0;
+			}
+
+		}
+	}
+
+	a, span{
+		padding: 15px 20px;
+		display: block;
+	}
+	li{
+		border-bottom: 1px solid #abb5be;
+	}
+
+}
